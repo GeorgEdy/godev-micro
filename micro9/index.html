@@ -2,14 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>batch2</title>
     <link href="css/main.css" rel="stylesheet">
 </head>
 <body>
-<div>
-<a href="#" id="add-btn">Add new row</a>
-    </div>
-<table>
+
+<script type="text/html" id="item_tmpl">
+    <td><input/></td>
+    <td><input type="email"/></td>
+    <td><a href="#" class="add-btn">Add new row</a></td>
+
+</script>
+
+
+<table id="the-table">
     <thead>
     <tr>
         <th>Name</th>
@@ -21,10 +27,12 @@
     <tr>
         <td><input/></td>
         <td><input type="email"/></td>
+        <td><a href="#" class="add-btn">Add new row</a></td>
     </tr>
     </tbody>
 </table>
-<script src="js/main.js"></script>
 <script src="js/resig.js"></script>
+<script src="js/main.js"></script>
+
 </body>
 </html>

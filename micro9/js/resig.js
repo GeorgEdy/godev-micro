@@ -1,6 +1,3 @@
-/**
- * Created by George Dinu on 18.12.2015.
- */
 // Simple JavaScript Templating
 // John Resig - http://ejohn.org/ - MIT Licensed
 (function(){
