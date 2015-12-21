@@ -1,0 +1,23 @@
+.star {
+    color:gray;
+    cursor: pointer;
+}
+
+/*
+no entries yet care dispare
+*/
+.active {
+    color:#000;
+}
+.rating {
+    border:1px solid;
+    padding: 5px 10px;
+}
+thead {
+    background-color: lightgray;
+}
+
+.form-control {
+    border:none;
+    background: lightgray;
+}
