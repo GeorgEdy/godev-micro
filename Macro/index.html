@@ -11,11 +11,11 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4 form-group ">
-            <form role="form" class="form-control form-group">
+            <form role="form" class="form-control form-group" id="form">
                 <div>Name:</div>
-                <input type="text">
+                <input type="text" required >
                 <div>City visited:</div>
-                <input type="text">
+                <input type="text" id="city" required>
 
                 <div>
                     <span class="star" data-value="1">&#9733;</span>
@@ -42,22 +42,35 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr id="trow">
-                    <td>Ionut</td>
-                    <td>Barcelona</td>
-                    <td>4/5</td>
-                    <td><a href="#" id="remove">Remove</a></td>
-                </tr>
+
                 </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="100%">Total: <span id="count">0</span>
+                        <span id="average"> Avg. Rating: <span id="">0</span></span>
+                    </td>
+
+                </tr>
+                </tfoot>
             </table>
+        </div>
+        <div class="col-md-4 height">
+            <div id="map">
+
+            </div>
         </div>
     </div>
 </div>
 <script type="text/html" id="item_tmpl">
+      <tr>
         <td><%= name %></td>
         <td><%= city %></td>
-        <td id="theRating"><%= rating %></td>
-        <td><a href="#" id="remove">Remove</a></td>
+        <td><%= rating %></td>
+        <td  class="rem"><a href="#" class="remove">Remove</a></td>
+    </tr>
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARgGQbQ90HPpMM5tT2EMOhlAOV2RnUj94&callback=initMap">
 </script>
 <script src="js/resig.js"></script>
 <script src="js/main.js"></script>

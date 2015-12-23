@@ -1,58 +1,178 @@
 var stars = document.getElementsByClassName('star');
-var rating = document.getElementById('rating');
+
 var theRating = document.getElementById('theRating');
+var counter = document.getElementById("count");
+var length;
+var selected = 0;
+
+var change = function () {
+    rating = parseInt(this.getAttribute("data-value"), 10);
+    length = parseInt(rating, 10);
+    for (var i = 0; i < stars.length; i++) {
+        stars[i].classList.remove('active');
+    }
+    for (var j = 0; j < length; j++) {
+        stars[j].classList.add('active');
+    }
+    selected = length;
+};
 
 for (var i = 0; i < stars.length; i++) {
     var star = stars[i];
 
-    star.addEventListener('click', function () {
-        rating = this.getAttribute("data-value");
+    star.addEventListener('click', change);
 
-        var length = parseInt(rating, 10);
 
-        for (var j = 0; j < length; j++) {
-            stars[j].classList.add('active');
-        }
-    });
+  //  star.addEventListener('mouseover', function () {
+    //    rating = parseInt(this.getAttribute("data-value"), 10);
+      //  length = parseInt(rating, 10);
+        //for (var i = 0; i < stars.length; i++) {
+          //  stars[i].classList.remove('active');
+        //}
+    //    for(var j = 0; j < length; j++){
+      //      stars[j].classList.add('active');
+
+//        }
+  //      console.log(rating);
+  //  });
+    //star.addEventListener('mouseout', function () {
+     //   rating = parseInt(this.getAttribute("data-value"), 10);
+       // length = parseInt(rating, 10);
+       // for (var j = 0; j < length; j++) {
+         //   stars[j].classList.remove('active');
+         //   console.log(length);
+       // }
+       // for (var k = 0; k < selected; j++) {
+         //   stars[k].classList.add('active');
+       // }
+ //   });
+
 }
+
+var store = [];
+
 var myTable = document.getElementById('my-table');
 var tableBody = myTable.getElementsByTagName("tbody")[0];
 
+var form = document.getElementById("form");
 
-var inputcity = document.getElementsByTagName('input');
+form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    var data = input();
+    if (isValidName(data) && isValidCity(data) && isValidRating(data)) {
+        store.push(data);
+        render(store);
+        form.reset();
 
-
-
-var input = function () {
-    var name = document.getElementById('name');
-    name.innerHTML= tmpl("item");
-    var city = document.getElementById('city');
-
+    }
+});
+var isValidName = function (data) {
+    return data.name != ""
+};
+var isValidCity = function (data) {
+    return data.city != ""
 };
 
-var createRow = function () {
+var isValidRating = function (data) {
+    return data.rating != "null"
+};
+
+var render = function (store) {
+    addRow(store);
+    updateTotal(store);
+    calculateAverage(store);
+};
+
+var addRow = function (store) {
+    tableBody.innerHTML = '';
+    for (var i = 0; i < store.length; i++) {
+        var data = store[i];
+        createRow(data);
+    }
+};
+
+var updateTotal = function (arr) {
+    counter.innerHTML = arr.length;
+};
+
+var calculateAverage = function () {
+
+};
+var input = function () {
+    var input = document.getElementsByTagName('input');
+    return {
+        name: input[0].value,
+        city: input[1].value,
+        rating: rating + "/5"
+    }
+};
+
+var createRow = function (inputs) {
     var tr = document.createElement("tr");
-    tr.innerHTML = tmpl("item_tmpl",{});
+    tr.innerHTML = tmpl("item_tmpl", inputs);
     tableBody.appendChild(tr);
 };
 
 
+tableBody.addEventListener('click', function () {
+    if (rmv(event.target)) {
+        removeRow(event.target);
 
-
-var add = document.getElementById('add-row');
-
-add.addEventListener('click', function (event) {
-    event.preventDefault();
-    input();
-    createRow();
+    }
 });
 
+var rmv = function (target) {
+    return target.classList.contains("remove");
+};
+
+var removeRow = function (target) {
+    var index = getIndexOfButton(target);
+    removeFromStore(store, index);
+    render(store);
+};
+
+var getIndexOfButton = function (target) {
+    var tr = target.parentNode.parentNode;
+    var allTrs = tableBody.getElementsByTagName('tr');
+    allTrs = [].slice.call(allTrs);
+    var index = allTrs.indexOf(tr);
+    return index;
+};
 
 
-var rmv = document.getElementById('remove');
+var removeFromStore = function (store, index) {
+    store.splice(index, 1);
+};
 
-rmv.addEventListener("click", function () {
+// Create a map object and specify the DOM element for display.
+function initMap() {
+    var myLatLng = {lat: 44.4538, lng: 26.1047};
 
-    var child = document.getElementById("trow");
-    child.parentNode.removeChild(child);
-});
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 10,
+        center: myLatLng
+    });
+
+
+    var geocoder = new google.maps.Geocoder();
+
+    document.getElementById('add-row').addEventListener('click', function () {
+        geocodeAddress(geocoder, map);
+    });
+}
+
+function geocodeAddress(geocoder, resultsMap) {
+    var address = document.getElementById('city').value;
+    geocoder.geocode({'address': address}, function (results, status) {
+        if (status === google.maps.GeocoderStatus.OK) {
+            resultsMap.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+                map: resultsMap,
+                position: results[0].geometry.location
+            });
+        } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+        }
+    });
+}
+

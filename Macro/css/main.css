@@ -1,8 +1,13 @@
+body {
+    margin-top:50px;
+}
 .star {
     color:gray;
     cursor: pointer;
 }
-
+.height {
+    height:200px;
+}
 /*
 no entries yet care dispare
 */
@@ -21,3 +26,11 @@ thead {
     border:none;
     background: lightgray;
 }
+#map {
+    height: 100%;
+}
+
+#average {
+    float:right;
+}
+
