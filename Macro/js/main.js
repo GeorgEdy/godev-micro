@@ -1,5 +1,5 @@
 var stars = document.getElementsByClassName('star');
-
+var rating = document.getElementById('rating');
 var theRating = document.getElementById('theRating');
 var counter = document.getElementById("count");
 var length;
@@ -24,8 +24,8 @@ for (var i = 0; i < stars.length; i++) {
 
 
     star.addEventListener('mouseover', function () {
-        rating = parseInt(this.getAttribute("data-value"), 10);
-        length = parseInt(rating, 10);
+        rating1 = parseInt(this.getAttribute("data-value"), 10);
+        length = parseInt(rating1, 10);
         for (var i = 0; i < stars.length; i++) {
             stars[i].classList.remove('active');
         }
@@ -35,8 +35,8 @@ for (var i = 0; i < stars.length; i++) {
         }
     });
     star.addEventListener('mouseout', function () {
-        rating = parseInt(this.getAttribute("data-value"), 10);
-        length = parseInt(rating, 10);
+        rating1 = parseInt(this.getAttribute("data-value"), 10);
+        length = parseInt(rating1, 10);
         for (var j = 0; j < length; j++) {
             stars[j].classList.remove('active');
         }
@@ -57,27 +57,42 @@ var form = document.getElementById("form");
 form.addEventListener('submit', function (event) {
     event.preventDefault();
     var data = input();
-    if (isValidName(data) && isValidCity(data) && isValidRating(data)) {
-        store.push(data);
-        render(store);
-        form.reset();
-    }
-    else {
-        var show1 = document.getElementById('hidden1').style.display = "block";
-        var show2 = document.getElementById('hidden2').style.display = "block";
-        var show3 = document.getElementById('hidden3').style.display = "block";
-        return show1, show2, show3;
-    }
+
+        if (isValidName(data)) {
+            if (isValidCity(data)) {
+                if(isValidRating(data)) {
+                    store.push(data);
+                    render(store);
+                    form.reset();
+                }
+                else {
+                    var show3 = document.getElementById('hidden3').style.display = "block";
+                    return show3;
+                }
+            }
+            else {
+                var show2 = document.getElementById('hidden2').style.display = "block";
+                return show2;
+            }
+        }
+        else {
+            var show1 = document.getElementById('hidden1').style.display = "block";
+            return show1;
+        }
+
+
+
 });
 var isValidName = function (data) {
-    return data.name != ""
+    return data.name != "";
 };
 var isValidCity = function (data) {
-    return data.city != ""
+    return data.city != "";
 };
 
 var isValidRating = function (data) {
-    return data.rating != "null"
+    console.log(data);
+    return data.rating != null;
 };
 
 var render = function (store) {
@@ -106,7 +121,7 @@ var input = function () {
     return {
         name: input[0].value,
         city: input[1].value,
-        rating: rating + "/5"
+        rating: rating
     }
 };
 
