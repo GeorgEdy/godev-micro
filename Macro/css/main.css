@@ -34,3 +34,7 @@ thead {
     float:right;
 }
 
+#hidden1, #hidden2, #hidden3  {
+    display:none;
+    color: #ff0000;
+}

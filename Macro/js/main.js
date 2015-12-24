@@ -5,47 +5,45 @@ var counter = document.getElementById("count");
 var length;
 var selected = 0;
 
-var change = function () {
-    rating = parseInt(this.getAttribute("data-value"), 10);
-    length = parseInt(rating, 10);
-    for (var i = 0; i < stars.length; i++) {
-        stars[i].classList.remove('active');
-    }
-    for (var j = 0; j < length; j++) {
-        stars[j].classList.add('active');
-    }
-    selected = length;
-};
+
 
 for (var i = 0; i < stars.length; i++) {
     var star = stars[i];
 
-    star.addEventListener('click', change);
+    star.addEventListener('click', function () {
+        rating = parseInt(this.getAttribute("data-value"), 10);
+        length = parseInt(rating, 10);
+        for (var i = 0; i < stars.length; i++) {
+            stars[i].classList.remove('active');
+        }
+        for (var j = 0; j < length; j++) {
+            stars[j].classList.add('active');
+        }
+        selected = length;
+    });
 
 
-  //  star.addEventListener('mouseover', function () {
-    //    rating = parseInt(this.getAttribute("data-value"), 10);
-      //  length = parseInt(rating, 10);
-        //for (var i = 0; i < stars.length; i++) {
-          //  stars[i].classList.remove('active');
-        //}
-    //    for(var j = 0; j < length; j++){
-      //      stars[j].classList.add('active');
+    star.addEventListener('mouseover', function () {
+        rating = parseInt(this.getAttribute("data-value"), 10);
+        length = parseInt(rating, 10);
+        for (var i = 0; i < stars.length; i++) {
+            stars[i].classList.remove('active');
+        }
+        for (var j = 0; j < length; j++) {
+            stars[j].classList.add('active');
 
-//        }
-  //      console.log(rating);
-  //  });
-    //star.addEventListener('mouseout', function () {
-     //   rating = parseInt(this.getAttribute("data-value"), 10);
-       // length = parseInt(rating, 10);
-       // for (var j = 0; j < length; j++) {
-         //   stars[j].classList.remove('active');
-         //   console.log(length);
-       // }
-       // for (var k = 0; k < selected; j++) {
-         //   stars[k].classList.add('active');
-       // }
- //   });
+        }
+    });
+    star.addEventListener('mouseout', function () {
+        rating = parseInt(this.getAttribute("data-value"), 10);
+        length = parseInt(rating, 10);
+        for (var j = 0; j < length; j++) {
+            stars[j].classList.remove('active');
+        }
+        for (var k = 0; k < selected; k++) {
+            stars[k].classList.add('active');
+        }
+    });
 
 }
 
@@ -63,7 +61,12 @@ form.addEventListener('submit', function (event) {
         store.push(data);
         render(store);
         form.reset();
-
+    }
+    else {
+        var show1 = document.getElementById('hidden1').style.display = "block";
+        var show2 = document.getElementById('hidden2').style.display = "block";
+        var show3 = document.getElementById('hidden3').style.display = "block";
+        return show1, show2, show3;
     }
 });
 var isValidName = function (data) {

@@ -13,10 +13,11 @@
         <div class="col-md-4 form-group ">
             <form role="form" class="form-control form-group" id="form">
                 <div>Name:</div>
-                <input type="text" required >
+                <input type="text"  pattern('A-Za-z')>
+                <div id="hidden1">Please enter your name</div>
                 <div>City visited:</div>
-                <input type="text" id="city" required>
-
+                <input type="text" id="city" >
+                <div id="hidden2">No city selected</div>
                 <div>
                     <span class="star" data-value="1">&#9733;</span>
                     <span class="star" data-value="2">&#9733;</span>
@@ -24,6 +25,7 @@
                     <span class="star" data-value="4">&#9733;</span>
                     <span class="star" data-value="5">&#9733;</span>
                 </div>
+                <div id="hidden3">Please select a rating</div>
                 <input type="checkbox">
                 <span>More than a weekend</span>
                 <div>
@@ -62,11 +64,11 @@
     </div>
 </div>
 <script type="text/html" id="item_tmpl">
-      <tr>
+    <tr>
         <td><%= name %></td>
         <td><%= city %></td>
         <td><%= rating %></td>
-        <td  class="rem"><a href="#" class="remove">Remove</a></td>
+        <td class="rem"><a href="#" class="remove">Remove</a></td>
     </tr>
 </script>
 <script async defer
