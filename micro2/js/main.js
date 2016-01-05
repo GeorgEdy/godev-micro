@@ -17,6 +17,6 @@ for (var i=0; i< stars.length; i++) {
 	star.addEventlistener('mouseout', function(){
 		for (var j=0; j<stars.length; j++){
 			stars[j].classList.remove('active');
-		}
+		});
 	};
 }
