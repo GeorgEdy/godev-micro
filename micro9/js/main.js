@@ -26,7 +26,7 @@ var lockInputs = function () {
     var inputs = getInputs(lastTr);
     inputs[0].readOnly = true;
     inputs[1].readOnly = true;
-}
+};
 var getInputs = function (tr) {
     return tr.getElementsByTagName("input");
 };
@@ -38,16 +38,13 @@ var getLastTr = function () {
 };
 var isValid = function () {
     var lastTr = getLastTr();
-    console.log(lastTr);
     var values = getValues(lastTr);
-    if (isValidName(values.name) && isValidEmail(values.email)) {
-        return true;
-    }
-    return false;
+    return !!(isValidName(values.name) && isValidEmail(values.email));
+
 };
 var isValidName = function (name) {
     return name.length >= 2;
-}
+};
 var getValues = function (tr) {
     var inputs = tr.getElementsByTagName("input");
     var name = inputs[0].value;
