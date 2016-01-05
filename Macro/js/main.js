@@ -6,7 +6,6 @@ var length;
 var selected = 0;
 
 
-
 for (var i = 0; i < stars.length; i++) {
     var star = stars[i];
 
@@ -31,7 +30,6 @@ for (var i = 0; i < stars.length; i++) {
         }
         for (var j = 0; j < length; j++) {
             stars[j].classList.add('active');
-
         }
     });
     star.addEventListener('mouseout', function () {
@@ -53,36 +51,41 @@ var myTable = document.getElementById('my-table');
 var tableBody = myTable.getElementsByTagName("tbody")[0];
 
 var form = document.getElementById("form");
-
 form.addEventListener('submit', function (event) {
     event.preventDefault();
     var data = input();
 
-        if (isValidName(data)) {
-            if (isValidCity(data)) {
-                if(isValidRating(data)) {
-                    store.push(data);
-                    render(store);
-                    form.reset();
-                }
-                else {
-                    var show3 = document.getElementById('hidden3').style.display = "block";
-                    return show3;
-                }
+    if (isValidName(data)) {
+        if (isValidCity(data)) {
+            if (isValidRating(data)) {
+                store.push(data);
+                render(store);
+                form.reset();
+                var shows1 = document.getElementById('hidden1').style.display = "none";
+                var shows2 = document.getElementById('hidden2').style.display = "none";
+                var shows3 = document.getElementById('hidden3').style.display = "none";
+                return shows1, shows2, shows3;
             }
             else {
-                var show2 = document.getElementById('hidden2').style.display = "block";
-                return show2;
+                var show3 = document.getElementById('hidden3').style.display = "block";
+                return show3;
+
             }
         }
         else {
-            var show1 = document.getElementById('hidden1').style.display = "block";
-            return show1;
-        }
+            var show2 = document.getElementById('hidden2').style.display = "block";
+            return show2;
 
+        }
+    }
+    else {
+        var show1 = document.getElementById('hidden1').style.display = "block";
+        return show1;
+    }
 
 
 });
+
 var isValidName = function (data) {
     return data.name != "";
 };
@@ -91,7 +94,6 @@ var isValidCity = function (data) {
 };
 
 var isValidRating = function (data) {
-    console.log(data);
     return data.rating != null;
 };
 
@@ -179,10 +181,9 @@ function initMap() {
     });
 }
 
-function geocodeAddress(geocoder, resultsMap) {
-    var address = document.getElementById('city').value;
-    geocoder.geocode({'address': address}, function (results, status) {
-        if (isValidCity(data)) {
+    function geocodeAddress(geocoder, resultsMap) {
+        var address = document.getElementById('city').value;
+        geocoder.geocode({'address': address}, function (results, status) {
             if (status === google.maps.GeocoderStatus.OK) {
                 resultsMap.setCenter(results[0].geometry.location);
                 var marker = new google.maps.Marker({
@@ -192,7 +193,7 @@ function geocodeAddress(geocoder, resultsMap) {
             } else {
                 alert('Geocode was not successful for the following reason: ' + status);
             }
-        }
-    });
-}
+        });
+    }
+
 
