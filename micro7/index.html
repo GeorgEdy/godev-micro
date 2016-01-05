@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Chat window</title>
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<script type="text/html" id="msg_template">
+    <div class="message-box">
+      <div class="image"></div>
+      <p><%=message%></p>
+    </div>
+  </script>
+  
+  <div id="chat-log" class="chat-log">
+   <!--
+ <div class="message-box">
+      <div class="image"></div>
+      <p>Hello!</p>
+    </div>
+-->
+  </div>
+  <form id="myForm">
+    <input id="message">
+    <input type="submit">
+  </form>
+<script src="js/main.js"></script>
+</body>
+</html>
