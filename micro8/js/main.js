@@ -30,7 +30,7 @@ var listener = function() {
 	 result.value =	"Error!";
 	}
 
-}
+};
 operator.addEventListener("input", listener );
 a.addEventListener("input", listener );
 b.addEventListener("input", listener );
