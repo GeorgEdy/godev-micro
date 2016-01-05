@@ -1,0 +1,17 @@
+#container .ok {
+	display: none;
+}
+#container.valid .ok {
+	display: inline-block;
+}
+#container.valid .not-ok {
+	display: none;
+}
+.ok {
+    background: green;
+    padding: 5px 20px;
+}
+.not-ok {
+	background: #ff0000;
+	padding: 5px 20px;
+}
