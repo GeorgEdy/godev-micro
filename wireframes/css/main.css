@@ -1,0 +1,38 @@
+body {
+    margin-top:50px;
+}
+.star {
+    color:gray;
+    cursor: pointer;
+}
+.height {
+    height:200px;
+}
+
+.active {
+    color:#000;
+}
+.rating {
+    border:1px solid;
+    padding: 5px 10px;
+}
+thead {
+    background-color: lightgray;
+}
+
+.form-control {
+    border:none;
+    background: lightgray;
+}
+#map {
+    height: 100%;
+}
+
+#average {
+    float:right;
+}
+
+#hidden1, #hidden2, #hidden3  {
+    display:none;
+    color: #ff0000;
+}
