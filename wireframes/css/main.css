@@ -1,7 +1,7 @@
 body {
     margin-top:50px;
 }
-.star {
+.stars {
     color:gray;
     cursor: pointer;
 }
@@ -35,4 +35,28 @@ thead {
 #hidden1, #hidden2, #hidden3  {
     display:none;
     color: #ff0000;
+}
+
+.stars-container {
+    font-size: 30px;
+}
+
+.stars-container .star {
+    cursor: pointer;
+}
+
+.star.hover {
+    color: gold;
+}
+
+.change-row {
+    position: absolute;
+    left:0;
+    display:none;
+}
+.display {
+    display:inline;
+}
+.save {
+    position:relative;
 }

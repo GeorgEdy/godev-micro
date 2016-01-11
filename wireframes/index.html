@@ -17,17 +17,14 @@
                 <div id="hidden2">No city selected</div>
                 <div>Stars</div>
                 <div>
-                    <span class="star" data-value="1">&#9733;</span>
-                    <span class="star" data-value="2">&#9733;</span>
-                    <span class="star" data-value="3">&#9733;</span>
-                    <span class="star" data-value="4">&#9733;</span>
-                    <span class="star" data-value="5">&#9733;</span>
+                    <input type="text" class="stars" name="stea">
                 </div>
                 <div id="hidden3">Please select a rating</div>
                 <input type="checkbox" name="check">
                 <span>Visited</span>
-                <div>
+                <div class="save">
                     <input type="submit" value="Save" id="add-row">
+                    <input type="submit" value="Update" class="change-row">
                 </div>
             </form>
         </div>
@@ -51,9 +48,9 @@
 </div>
 <script type="text/html" id="item_tmpl">
     <tr data-id="<%= id %>">
-        <td><%= name %></td>
-        <td></td>
-        <td><%= visited %></td>
+        <td name="nume"><%= name %></td>
+        <td name="stele"><%= stars %></td>
+        <td name="vizitat"><%= visited %></td>
         <td class="rem">
             <a href="#" class="edit">Edit</a> /
             <a href="#" class="remove">Remove</a>
@@ -61,6 +58,7 @@
     </tr>
 </script>
 <script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/stars.plugin.js"></script>
 <script src="js/store.js"></script>
 <script src="js/resig.js"></script>
 <script src="js/main.js"></script>
