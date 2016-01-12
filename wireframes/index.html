@@ -9,6 +9,7 @@
 <body>
 
 <div class="container">
+
     <div class="row">
         <div class="col-md-4 form-group ">
             <form role="form" class="form-control form-group" id="form">
@@ -23,8 +24,9 @@
                 <input type="checkbox" name="check">
                 <span>Visited</span>
                 <div class="save">
-                    <input type="submit" value="Save" id="add-row">
-                    <input type="submit" value="Update" class="change-row">
+                    <input type="submit" value="Save" class="btn-primary" id="add-row">
+                    <input type="submit" value="Update" class="change-row btn-primary">
+                    <input type="submit" value="Cancel" class="change-row-cancel btn-primary">
                 </div>
             </form>
         </div>
@@ -42,8 +44,13 @@
                 <tr></tr>
                 </tbody>
             </table>
-            <div class="container"><<  1 of 5 >></div>
+            <div>
+                <a href="#" id="prev"><<</a>
+                <span id="pagins"></span> of <span id="totalpagins"></span>
+                <a href="#" id="next">>></a>
+            </div>
         </div>
+        <img src="ajax-loader.gif" alt="HTML5 Icon" class="gif">
     </div>
 </div>
 <script type="text/html" id="item_tmpl">
@@ -52,8 +59,8 @@
         <td name="stele"><%= stars %></td>
         <td name="vizitat"><%= visited %></td>
         <td class="rem">
-            <a href="#" class="edit">Edit</a> /
-            <a href="#" class="remove">Remove</a>
+            <a href="#" class="edit btn-primary">Edit</a>
+            <a href="#" class="remove btn-primary">Remove</a>
         </td>
     </tr>
 </script>

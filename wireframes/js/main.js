@@ -1,16 +1,18 @@
 var isEdited = null;
 var onSubmit = function () {
     if (isEdited) {
-        store.update(getFormData().then(function () {
+        store.update(isEdited.id, getFormData()).then(function () {
             drawTable(store);
+
         });
     } else {
         store.add(getFormData()).then(function () {
             drawTable(store);
         });
     }
+    $('#form')[0].reset();
+    $('.stars').val("").change();
     return false;
-
 };
 
 function transform(bool) {
@@ -25,24 +27,44 @@ var getFormData = function () {
         visited: transform($('[name="check"]').is(":checked"))
     };
 };
+var page = 1;
+var totalPages = 1;
 
 var drawTable = function (store) {
-    /*if ($("#add-row").attr('edit') == "true") {
-     var di = $("#add-row").attr('edit-id');
-     $("tr[data-id='" + di + "'").children("td").eq(0).text($('#cities').val());
-
-     } else {*/
-    store.getAll().then(function (data) {
-
+    store.getAll(page).then(function (data) {
         $('tbody tr').remove();
-        $.each(data, function () {
+
+        $.each(data.list, function () {
             var tr = tmpl("item_tmpl", this);
             $('table tbody').append(tr);
+            $('#pagins').text(data.page);
         });
+
+        totalPages = data.totalPages;
+        $('#totalpagins').text(totalPages);
         attachEvents();
     });
-    //}
 };
+
+$('#next').click(function () {
+    if (page < totalPages) {
+        page++;
+
+        drawTable(store);
+    }
+
+    return false;
+});
+
+$('#prev').click(function () {
+    if (page > 0) {
+        page--;
+
+        drawTable(store);
+    }
+
+    return false;
+});
 
 function attachEvents() {
     $('.remove').on('click', function () {
@@ -67,28 +89,34 @@ function attachEvents() {
             }
         });
         $('.change-row').addClass('display');
+        $('.change-row-cancel').addClass('display');
     });
 }
-/*var tr = $(this).closest('tr');
- $('input[name="city"]').val(tr.children('td[name="nume"]').text());
- $('.stars-container').children().each(function (i) {
- if (i < tr.children('td[name="stele"]').text()) {
- $(this).addClass("hover");
- }
- });
- if (tr.children('td[name="vizitat"]').text() == "Yes") {
- $('input[name="check"]').prop("checked", true);
- } else {
- $('input[name="check"]').prop("checked", false);
- }
- $('.change-row').addClass('display');
 
- return false;
- });*/
+$('.change-row-cancel').click(function () {
+    $('#form')[0].reset();
+    $('.change-row-cancel').removeClass('display');
+    $('.change-row').removeClass('display');
+    $('.stars').val("").change();
+    isEdited = null;
 
+    return false;
+
+});
 $(function () {
-    $('#form').submit(onSubmit);
+    var gif = $(".gif");
+
+    $(document).on({
+        ajaxStart: function () {
+            gif.addClass("display");
+        },
+        ajaxStop: function () {
+            gif.removeClass("display");
+        }
+    });
+    $('#form').not('.change-row-cancel').submit(onSubmit);
     drawTable(store);
+
 });
 
 $(function () {

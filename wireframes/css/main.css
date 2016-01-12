@@ -48,15 +48,25 @@ thead {
 .star.hover {
     color: gold;
 }
-
-.change-row {
+.gif {
+    display:none;
+}
+.change-row, .change-row-cancel  {
     position: absolute;
     left:0;
     display:none;
+}
+.change-row-cancel {
+    position: relative;
+    left: 20px;
 }
 .display {
     display:inline;
 }
 .save {
     position:relative;
+}
+.btn-primary {
+    border-radius: 5px;
+    padding: 5px;
 }

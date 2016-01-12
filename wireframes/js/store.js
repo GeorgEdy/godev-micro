@@ -10,17 +10,13 @@ var store = (function () {
     };
 
     return {
-        /*        getAll: function () {
-         return new Promise(function (resolve, reject) {
-         resolve(data);
-         });*/
-        getAll: function () {
+        getAll: function (page) {
             return new Promise(function (resolve, reject) {
-                $.ajax(theUrl, {
+                $.ajax(theUrl +"?page=" +page, {
                     type: 'GET',
                     headers: headers
                 }).done(function (data) {
-                    resolve(data.list);
+                    resolve(data);
                 });
             });
         },
@@ -31,6 +27,8 @@ var store = (function () {
                     headers: headers
                 }).done(function (data) {
                     resolve(data);
+                }).fail(function(){
+                    console.log('fail');
                 });
             });
         },
@@ -43,17 +41,21 @@ var store = (function () {
                     data: JSON.stringify(item)
                 }).done(function (data) {
                     resolve(data);
+                }).fail(function(){
+                   alert('Wrong data input');
                 });
             });
         },
         update: function (id, updateData) {
             return new Promise(function (resolve, reject) {
-                
-                $.each(data, function (index) {
-                    if (this.id == id) {
-                        data[index] = updateData;
-                        resolve(data);
-                    }
+                $.ajax(theUrl + "/" + id, {
+                    type: 'PUT',
+                    headers: headers,
+                    data: JSON.stringify(updateData)
+                }).done(function (data) {
+                    resolve(data);
+                }).fail(function(){
+                    console.log('fail');
                 });
             });
         },
