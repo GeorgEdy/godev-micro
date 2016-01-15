@@ -1,9 +1,6 @@
 body {
     margin-top:50px;
 }
-.my-form {
-    margin-top:20px;
-}
 .stars {
     color:gray;
     cursor: pointer;
@@ -72,20 +69,13 @@ a {
 .save {
     position:relative;
 }
-.sort-container {
-    margin-left:60px;
-}
-.sort-up {
-    top:16px;
+.btn-primary {
+    border-radius: 5px;
+    padding: 5px;
 }
 .sort-down {
-    top:5px;
+    display:none;
 }
-.sort-down, .sort-up {
-    position:absolute;
-    float:right;
-}
-
 .pages{
     text-align:center;
 }
@@ -120,7 +110,7 @@ table span {
 }
 
 #display{
-    visibility: hidden;
+    display:inline;
 }
 .close {
     position: absolute;
