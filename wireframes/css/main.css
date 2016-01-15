@@ -1,6 +1,9 @@
 body {
     margin-top:50px;
 }
+.my-form {
+    margin-top:20px;
+}
 .stars {
     color:gray;
     cursor: pointer;
@@ -20,6 +23,9 @@ thead {
     background-color: lightgray;
 }
 
+a {
+    text-decoration: none;
+}
 .form-control {
     border:none;
     background: lightgray;
@@ -66,7 +72,61 @@ thead {
 .save {
     position:relative;
 }
-.btn-primary {
-    border-radius: 5px;
-    padding: 5px;
+.sort-container {
+    margin-left:60px;
+}
+.sort-up {
+    top:16px;
+}
+.sort-down {
+    top:5px;
+}
+.sort-down, .sort-up {
+    position:absolute;
+    float:right;
+}
+
+.pages{
+    text-align:center;
+}
+table div {
+    width: 65px;
+}
+table span {
+    cursor: pointer;
+}
+
+.right {
+    float:right;
+}
+
+.overlay {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+    background-color: rgba(0,0,0,0.5);
+    display:none;
+}
+
+.gif-here {
+    position:absolute;
+    left:50%;
+    transform:translate(-50%,-50%);
+    top:50%
+}
+
+#display{
+    visibility: hidden;
+}
+.close {
+    position: absolute;
+    left: 90%;
+    top: 5%;
+}
+.icon {
+    height:64px;
 }

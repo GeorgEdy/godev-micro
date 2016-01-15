@@ -7,67 +7,93 @@
     <link href="css/main.css" rel="stylesheet">
 </head>
 <body>
-
+<div class="overlay"><a href="#" class="close"><img src="close-icon.png" class="icon"></a>
+    <div class="gif-here"></div>
+</div>
 <div class="container">
-
     <div class="row">
-        <div class="col-md-4 form-group ">
+        <div class="col-md-4  ">
             <form role="form" class="form-control form-group" id="form">
                 <div>City</div>
-                <input type="text" name="city">
-                <div id="hidden2">No city selected</div>
-                <div>Stars</div>
-                <div>
-                    <input type="text" class="stars" name="stea">
-                </div>
-                <div id="hidden3">Please select a rating</div>
-                <input type="checkbox" name="check">
-                <span>Visited</span>
-                <div class="save">
-                    <input type="submit" value="Save" class="btn-primary" id="add-row">
-                    <input type="submit" value="Update" class="change-row btn-primary">
-                    <input type="submit" value="Cancel" class="change-row-cancel btn-primary">
-                </div>
+                    <input type="text" name="city">
+                    <div id="hidden2">No city selected</div>
+                    <div>Stars</div>
+                    <div>
+                        <input type="text" class="stars" name="stea">
+                    </div>
+                    <div id="hidden3">Please select a rating</div>
+                    <input type="checkbox" name="check">
+                    <span>Visited</span>
+                    <div class="save">
+                        <input type="submit" value="Save" class="btn-primary" id="add-row">
+                        <input type="submit" value="Update" class="change-row btn-primary">
+                        <input type="submit" value="Cancel" class="change-row-cancel btn-primary">
+                    </div>
             </form>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-5">
             <table class="table table-striped table-bordered" id="my-table">
                 <thead>
                 <tr>
-                    <td>City</td>
-                    <td>Stars</td>
-                    <td>Visited</td>
-                    <td></td>
+                    <th data-fieldname="name" data-sorttype="asc">
+                        <div><span>City</span>
+                            <div class="sort-container">
+                                <span class="sort-up">&#9660;</span>
+                                <span class="sort-down">&#9650;</span>
+                            </div>
+                        </div>
+                    </th>
+                    <th data-fieldname="stars" data-sorttype="asc">
+                        <div>Stars
+                            <div class="sort-container">
+                                <span class="sort-up">&#9660;</span>
+                                <span class="sort-down">&#9650;</span>
+                            </div>
+                        </div>
+                    </th>
+                    <th data-fieldname="visited" data-sorttype="asc">
+                        <div>Visited
+                            <div class="sort-container">
+                                <span class="sort-up">&#9660;</span>
+                                <span class="sort-down">&#9650;</span>
+                            </div>
+                        </div>
+
+                    </th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr></tr>
                 </tbody>
             </table>
-            <div>
+            <div class="pages">
                 <a href="#" id="prev"><<</a>
                 <span id="pagins"></span> of <span id="totalpagins"></span>
                 <a href="#" id="next">>></a>
             </div>
         </div>
-        <img src="ajax-loader.gif" alt="HTML5 Icon" class="gif">
+
+        <img src="ajax-loader.gif" class="gif">
     </div>
 </div>
 <script type="text/html" id="item_tmpl">
     <tr data-id="<%= id %>">
-        <td name="nume"><%= name %></td>
-        <td name="stele"><%= stars %></td>
-        <td name="vizitat"><%= visited %></td>
-        <td class="rem">
-            <a href="#" class="edit btn-primary">Edit</a>
-            <a href="#" class="remove btn-primary">Remove</a>
+        <td class="nume"><a href="#"><%= name %></a></td>
+        <td><%= stars %></td>
+        <td><%= visited %></td>
+        <td>
+            <a href="#" class="edit btn btn-sm btn-primary"><i class="glyphicon glyphicon-edit"></i></a>
+            <a href="#" class="remove btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
         </td>
     </tr>
 </script>
 <script src="js/jquery-2.1.4.min.js"></script>
+<script src="//github.hubspot.com/tether/dist/js/tether.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <script src="js/stars.plugin.js"></script>
 <script src="js/store.js"></script>
 <script src="js/resig.js"></script>
 <script src="js/main.js"></script>
+
 </body>
 </html>

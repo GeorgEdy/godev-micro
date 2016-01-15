@@ -1,5 +1,13 @@
 var i = 0;
-var store = (function () {
+var store = (function () {/*
+ var data=[
+ {
+ name: 'bucuresti',
+ stars: 5,
+ visited: 1,
+ id: 1
+ }
+ ];*/
     // private
 
     //public
@@ -10,13 +18,24 @@ var store = (function () {
     };
 
     return {
-        getAll: function (page) {
+        /*                getAll: function () {
+         return new Promise(function (resolve, reject) {
+         resolve(data);
+         });*/
+        getAll: function (page, sortField, sortDir) {
             return new Promise(function (resolve, reject) {
-                $.ajax(theUrl +"?page=" +page, {
+                if(sortField == undefined && sortDir == undefined){
+                    var urlto = theUrl + "?page=" + page;
+                }else{
+                    var urlto = theUrl + "?page=" + page + "&sortField=" + sortField + "&sortDir=" + sortDir;
+                }
+                $.ajax(urlto, {
                     type: 'GET',
                     headers: headers
                 }).done(function (data) {
                     resolve(data);
+                }).fail(function () {
+                    alert('An unknown error occured');
                 });
             });
         },
@@ -27,8 +46,8 @@ var store = (function () {
                     headers: headers
                 }).done(function (data) {
                     resolve(data);
-                }).fail(function(){
-                    console.log('fail');
+                }).fail(function () {
+                    alert('An unknown error occured');
                 });
             });
         },
@@ -38,11 +57,14 @@ var store = (function () {
                 $.ajax(theUrl, {
                     type: 'POST',
                     headers: headers,
-                    data: JSON.stringify(item)
+                    data: JSON.stringify(item),
+                    statusCode: {
+                        409: function() {
+                            alert("Wrong data input");
+                        }
+                    }
                 }).done(function (data) {
                     resolve(data);
-                }).fail(function(){
-                   alert('Wrong data input');
                 });
             });
         },
@@ -54,8 +76,8 @@ var store = (function () {
                     data: JSON.stringify(updateData)
                 }).done(function (data) {
                     resolve(data);
-                }).fail(function(){
-                    console.log('fail');
+                }).fail(function () {
+                    console.log('An unknown error occured');
                 });
             });
         },
